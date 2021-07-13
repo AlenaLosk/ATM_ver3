@@ -9,7 +9,7 @@ import java.math.*;
 import java.text.SimpleDateFormat;
 
 public class GUI_ATM extends JFrame {
-    public boolean isWindowClosed = false;
+    public static boolean isWindowClosed = false;
     boolean isPinCodeCorrect = false;
     private ATM atm;
     //Настройки блока 1
@@ -202,7 +202,7 @@ public class GUI_ATM extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             atm.injectCard();
             thisFrame.setVisible(false);
-            thisFrame.dispose();
+            //thisFrame.dispose();
         });
         //pack();//автонастройка размера фрейма
         setVisible(true);

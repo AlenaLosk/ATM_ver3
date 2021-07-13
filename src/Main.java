@@ -7,6 +7,7 @@ import Interface.GUI_ATM;
 import Interface.GUI_InternetShop;
 import Interface.InternetShop;
 
+import java.io.Closeable;
 import java.math.BigDecimal;
 
 public class Main {
@@ -18,16 +19,15 @@ public class Main {
         ATM atm = new ATM();
         atm.insertCard(card6);
         GUI_ATM frame1 = new GUI_ATM(atm);
-
+        int openCounter = 0;
         InternetShop internetShop = new InternetShop();
         internetShop.involvedCardInPaymentProcess(card9);
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                GUI_InternetShop frame2 = new GUI_InternetShop(internetShop);
+        GUI_InternetShop frame2 = new GUI_InternetShop(internetShop);
+        while (openCounter == 0) {
+            if (GUI_ATM.isWindowClosed) {
+                frame2.setVisible(true);
+                openCounter++;
             }
-        });
-        if (frame1.isWindowClosed != true)
-            thread2.start();
+        }
     }
 }
